@@ -1,3 +1,5 @@
 module.exports = function check(str, bracketsConfig) {
-  // your solution
-}
+    // your solution
+};
+
+const check = (str, bracketsConfig) => {};
