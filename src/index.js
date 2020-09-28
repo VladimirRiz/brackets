@@ -1,31 +1,55 @@
 module.exports = function check(str, bracketsConfig) {
-    const arr = [];
-    bracketsConfig.forEach((x) => {
-        for (let i in x) {
-            arr.push(x[i]);
+    if (str.length % 2) return false;
+    let s = str.split("");
+
+    for (let i = 0; i < s.length; i++) {
+        for (let j = 0; j < bracketsConfig.length; j++) {
+            if (
+                s[i] === bracketsConfig[j][0] &&
+                s[i + 1] === bracketsConfig[j][1]
+            ) {
+                s.splice(i, 2);
+                i -= 2;
+            }
         }
-    });
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === arr[i]) {
-            continue;
-        } else return false;
     }
-    return true;
+    return !s.length;
 };
 
-const check = (str, bracketsConfig) => {
-    const arr = [];
-    bracketsConfig.forEach((x) => {
-        for (let i in x) {
-            arr.push(x[i]);
-        }
-    });
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === arr[i]) {
-            continue;
-        } else return false;
-    }
-    return true;
-};
+// check = (str, bracketsConfig) => {
+//     if (str.length % 2) return false;
+//     // const flatSingle = (arr) => [].concat(...arr),
+//     // arr = flatSingle(bracketsConfig);
 
-console.log(check("()", [["(", ")"]]));
+//     let s = str.split("");
+
+//     for (let i = 0; i < s.length; i++) {
+//         for (let j = 0; j < bracketsConfig.length; j++) {
+//             // console.log(s[i], arr[j]);
+//             if (
+//                 s[i] === bracketsConfig[j][0] &&
+//                 s[i + 1] === bracketsConfig[j][1]
+//             ) {
+//                 // console.log(s[i], s[i + 1], "w", arr[j], arr[j + 1]);
+//                 s.splice(i, 2);
+//                 i -= 2;
+//             }
+//         }
+//     }
+//     // console.log(s);
+//     // return s.length % 2;
+//     return !s.length;
+// };
+
+// console.log(
+//     check(
+//         "8888877878887777777888888887777777887887788788887887777777788888888887788888",
+//         [
+//             ["1", "2"],
+//             ["3", "4"],
+//             ["5", "6"],
+//             ["7", "7"],
+//             ["8", "8"],
+//         ]
+//     )
+// );
